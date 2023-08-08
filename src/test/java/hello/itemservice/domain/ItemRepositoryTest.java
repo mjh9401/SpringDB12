@@ -4,6 +4,7 @@ import hello.itemservice.repository.ItemRepository;
 import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
+@Slf4j
 class ItemRepositoryTest {
 
     @Autowired
@@ -85,6 +87,7 @@ class ItemRepositoryTest {
         itemRepository.save(item2);
         itemRepository.save(item3);
 
+        log.info("repository={}",itemRepository.getClass());
         //둘 다 없음 검증
         test(null, null, item1, item2, item3);
         test("", null, item1, item2, item3);
